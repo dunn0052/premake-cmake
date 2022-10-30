@@ -7,6 +7,7 @@
 --              Manu Evans
 --              Jason Perkins
 --              Yehonatan Ballas
+--              Kevin Dunn
 -- Created:     2013/05/06
 -- Copyright:   (c) 2008-2020 Jason Perkins and the Premake project
 --
@@ -39,8 +40,8 @@ end
 function cmake.cfgname(cfg)
     local cfgname = cfg.buildcfg
     if cmake.workspace.multiplePlatforms then
-        -- CMake breaks if "|" is used here
-        cfgname = string.format("%s-%s", cfg.platform, cfg.buildcfg)
+        -- CMake breaks if any of "| - /" is used here so we opt for _
+        cfgname = string.format("%s_%s", cfg.platform, cfg.buildcfg)
     end
     return cfgname
 end
